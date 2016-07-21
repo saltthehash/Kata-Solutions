@@ -20,3 +20,20 @@ node.next
 URL: https://www.codewars.com/kata/52a89c2ea8ddc5547a000863
 
 """
+def loop_size(node):
+    current = node
+    i = 1
+    # Label visited nodes as visited
+    # and with their number
+    setattr(current, "visited", True)
+    setattr(current, "n", i)
+    # While the next node hasn't been labeled with visited
+    # label it and move to the next node
+    while not hasattr(current.next, "visited"):
+        current = current.next
+        setattr(current, "visited", True)
+        i += 1
+        setattr(current, "n", i)
+    # Compute the loop size
+    n = (i+1)-current.next.n
+    return n
